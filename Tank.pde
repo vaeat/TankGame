@@ -5,10 +5,15 @@ final int numOfValues = 6;
 
 class Tank {
 
+  int id;
+
   int[] values = new int[numOfValues];
 
   //  creates a random tank
-  Tank() {
+  Tank(int ident) {
+    //  set id value
+    id = ident;
+
     //  create minimum
     for (int i = 0; i < values.length; i++)
       values[i] = 1;
@@ -27,7 +32,10 @@ class Tank {
 
 
   //  creates a mutation of the input tank depending on the mutation factor
-  Tank(Tank base, int factor) {
+  Tank(int ident, Tank base, int factor) {
+    //  set id value
+    id = ident;
+
     //  copy base tank
     for (int i = 0; i < values.length; i++)
       values[i] = base.values[i];
@@ -58,8 +66,30 @@ class Tank {
   }
 
 
+  //  creates a clone of the input tank
+  Tank(int ident, Tank base) {
+    //  set id value
+    id = ident;
+
+    //  copy base tank
+    for (int i = 0; i < values.length; i++)
+      values[i] = base.values[i];
+
+
+    //  report result
+    println("new tank clone created");
+    String printout = str(values[0]);
+    for (int i = 1; i < values.length; i++)
+      printout += ", " + str(values[i]);
+    println(printout);
+  }
+
+
   //  crossbreeds the input tanks by taking the maximum values of each and then subtracting until within the limit
-  Tank(Tank base1, Tank base2) {
+  Tank(int ident, Tank base1, Tank base2) {
+    //  set id value
+    id = ident;
+
     //  set values to maximums of each parent tank
     for (int i = 0; i < values.length; i++)
       values[i] = max(base1.values[i], base2.values[i]);
