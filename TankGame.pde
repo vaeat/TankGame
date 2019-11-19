@@ -3,6 +3,7 @@
 //Third Commit
 
 
+final int numOfTanks = 8;
 
 ArrayList<Tank> tanks = new ArrayList<Tank>();
 ArrayList<Tank> tankResults = new ArrayList<Tank>();
@@ -30,13 +31,16 @@ void setup() {
    Tank brother = new Tank(mother, father);
    Tank sister = new Tank(mother, father);
    */
+
+
+  ellipseMode(CENTER);
 }
 
 
 //  function to create initial tanks
 void createInitialTanks() {
   ArrayList<Tank> newTanks = new ArrayList<Tank>();
-  for (int i = 0; i < 8; i++)
+  for (int i = 0; i < numOfTanks; i++)
     newTanks.add(new Tank(i));
   tanks = newTanks;
 }
@@ -62,4 +66,13 @@ void createJosiahTanks() {
 
 
 void draw() {
+
+  //  update fight
+  //  update tanks
+  for (int i = 0; i < tanks.size(); i++) {
+    tanks.get(i).move();
+  }
+  //  update bullets
+  for (int i = 0; i < tanks.size(); i++) {
+  }
 }
