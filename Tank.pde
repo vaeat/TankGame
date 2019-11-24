@@ -3,6 +3,22 @@ final int numOfValues = 7;  //  number of attributes bred through the tanks
 
 
 
+//  functions to create functions
+Tank randomTank(int id) {
+  return new Tank(id);
+}
+Tank cloneTank(int id, Tank base) {
+  return new Tank(id, base);
+}
+Tank mutateTank(int id, Tank base, int factor) {
+  return new Tank(id, base, factor);
+}
+Tank breedTank(int id, Tank base1, Tank base2) {
+  return new Tank(id, base1, base2);
+}
+
+
+
 class Tank {
 
   int id;
@@ -219,7 +235,7 @@ class Tank {
       target = tanks.get(0);
     else
       target = tanks.get(1);
-      //  compares through tanks for which tank to target
+    //  compares through tanks for which tank to target
     for (int i = 1; i < tanks.size(); i++) {
       //  if the tank being checked has a higher agro than the current tank
       if (agro[i] > agro[target.id] && tanks.get(i) != this)
