@@ -19,6 +19,10 @@ Tank breedTank(int id, Tank base1, Tank base2) {
 
 
 
+String[] statNames = {"MSPD", "BSPD", "DMOD", "FSPD", "DEFN", "SIZE", "CRAG"};
+
+
+
 class Tank {
 
   int id;
@@ -50,6 +54,12 @@ class Tank {
   //  positioning info
   PVector pos;
   float dir;
+
+  //  for firing cooldown
+  int cooldown = 0;
+
+  //  death tracker
+  boolean dead = false;
 
   //  colour
   color colour;
@@ -188,21 +198,24 @@ class Tank {
      */
 
     mspeed = values[0]/2;
-    bspeed = values[1];
+    bspeed = values[1]*2;
     damage = int(0.5 + values[2]/2);
     fspeed = int(max(120 - 10*values[5], 0) + 30);  //  the max function means that the even if 120 - 10*values[5] becomes less than 0, it will still be 0, making the fastest possible firing rate 30 fps
     health = values[4]+1;
-    size = int(50/values[5] + 50);
+    size = int(20/values[5] + 20);
     distance = int(max(120 - 10*values[6], 0) + 100);
 
     colour = colour();
 
     for (int i = 0; i < numOfTanks; i++)
       agro[i] = 0;
-
-    hitbox = new Hitbox(pos, size);
   }
 
+  //  sets the position of the tank
+  void setPos(PVector p) {
+    pos = p;
+    hitbox = new Hitbox(pos, size);
+  }
 
   //  colour selector based on values
   color colour() {
@@ -220,10 +233,102 @@ class Tank {
     return color(attack, speed, defense);
   }
 
+  void drawTank() {
+    fill(colour());
+    ellipse(pos.x, pos.y, size*2, size*2);
+  }
+
+
+  //  updates the tank once per frame to do various functions
+  void updateTank() {
+
+    //  cooldown
+    if (cooldown > 0)
+      cooldown--;
+
+    //  if currently fighting another tank
+    if (target != null) {
+      //  check if tank is still alive
+      if (target.dead)
+        //  get new target
+        pickTarget();
+      //  otherwise, focus on current target
+      else {
+        //  move
+        move();
+        //  fire
+        if (cooldown <= 0)
+          fire();
+      }
+    }
+    //  otherwise, if no target, pick a target
+    else {
+      pickTarget();
+    }
+  }
+
+
+  //  move tank
+  void move() {
+
+    //  assuming that target isn't null as this function shouldn't accessed if it is
+
+    PVector vel = new PVector(0, 0);
+
+    //  move away
+    if (dist(pos.x, pos.y, target.pos.x, target.pos.y) < distance*0.9) {
+      vel = target.pos.copy();
+      vel.sub(pos);
+      vel.normalize();
+      vel.mult(-1);
+      vel.mult(mspeed);
+    }
+    //  move closer
+    else if (dist(pos.x, pos.y, target.pos.x, target.pos.y) > distance*1.1) {
+      vel = target.pos.copy();
+      vel.sub(pos);
+      vel.normalize();
+      vel.mult(mspeed);
+    }
+    pos.add(vel);
+
+    //  modify dir
+    while (dir < 0)
+      dir += 2*PI;
+    while (dir > 2*PI)
+      dir -= 2*PI;
+
+    //  move back into bounds
+    while (pos.x+size < 0)
+      pos.add(new PVector(1, 0));
+    while (pos.x-size > width)
+      pos.add(new PVector(-1, 0));
+    while (pos.y+size < 0)
+      pos.add(new PVector(0, 1));
+    while (pos.y-size > height)
+      pos.add(new PVector(0, -1));
+  }
+
+
+  //  fire a bullet at the current target (assumes target is not null)
+  void fire() {
+    //  get bullet direction
+    PVector vel = target.pos.copy();
+    vel.sub(pos);
+    vel.normalize();
+    //  add bullet speed
+    vel.mult(bspeed);
+    //  fire
+    bullets.add(new Bullet(pos.copy(), vel, damage, id));
+    //  reset cooldown
+    cooldown = fspeed;
+  }
+
 
   //  get hit
   void getHit(Bullet b) {
     health -= b.damage;  //  take damage
+    //  otherwise, check if should target a new tank{
     agro[b.id] += b.damage;  //  modify agro
     pickTarget();  //  reevaluate target
   }
@@ -238,21 +343,41 @@ class Tank {
     //  compares through tanks for which tank to target
     for (int i = 1; i < tanks.size(); i++) {
       //  if the tank being checked has a higher agro than the current tank
-      if (agro[i] > agro[target.id] && tanks.get(i) != this)
+      if (agro[i] > agro[target.id] && tanks.get(i) != this && !tanks.get(i).dead)
         target = tanks.get(i);
       //  if the tank being checked has the same agro as the current tank
-      else if (agro[i] == agro[target.id] && tanks.get(i) != this)
-        if (random(1) > 0.5)  //  gives a 50/50 chance to picking the tieing tank
+      else if (agro[i] == agro[target.id] && tanks.get(i) != this && !tanks.get(i).dead) {
+        if (random(1) > 0.5) {  //  gives a 50/50 chance to picking the tieing tank
           target = tanks.get(i);
+        }
+      }
     }
   }
 
 
-  //  returns the total of all values (used for crossbreeding
+  //  returns the total of all values (used for crossbreeding)
   int total() {
     int total = 0;
     for (int i = 0; i < values.length; i++)
       total += values[i];
     return total;
+  }
+
+  //  returns a string of the tank's states
+  String stats() {
+    String s = "";
+
+    if (values[0] < 10)
+      s += ", " + statNames[0] + ":  " + str(values[0]);
+    else
+      s += ", " + statNames[0] + ": " + str(values[0]);
+
+    for (int i = 1; i < values.length; i++) {
+      if (values[i] < 10)
+        s += ", " + statNames[i] + ":  " + str(values[i]);
+      else
+        s += ", " + statNames[i] + ": " + str(values[i]);
+    }
+    return s;
   }
 }

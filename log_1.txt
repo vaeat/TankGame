@@ -1,0 +1,37 @@
+
+GENERATION 0
+
+Tanks: 8
+
+Tanks 0: , MSPD:  4, BSPD:  4, DMOD:  4, FSPD:  3, DEFN:  3, SIZE:  5, CRAG:  2
+Tanks 1: , MSPD:  3, BSPD:  5, DMOD:  4, FSPD:  5, DEFN:  3, SIZE:  3, CRAG:  2
+Tanks 2: , MSPD:  4, BSPD:  2, DMOD:  3, FSPD:  4, DEFN:  4, SIZE:  6, CRAG:  2
+Tanks 3: , MSPD:  3, BSPD:  6, DMOD:  2, FSPD:  4, DEFN:  4, SIZE:  3, CRAG:  3
+Tanks 4: , MSPD:  3, BSPD:  3, DMOD:  4, FSPD:  3, DEFN:  5, SIZE:  1, CRAG:  6
+Tanks 5: , MSPD:  4, BSPD:  2, DMOD:  4, FSPD:  2, DEFN:  9, SIZE:  2, CRAG:  2
+Tanks 6: , MSPD:  1, BSPD:  4, DMOD:  3, FSPD:  6, DEFN:  5, SIZE:  5, CRAG:  1
+Tanks 7: , MSPD:  4, BSPD:  5, DMOD:  3, FSPD:  3, DEFN:  5, SIZE:  3, CRAG:  2
+
+GENERATION 0
+
+Tanks: 8
+
+Tanks 0: , MSPD:  2, BSPD:  1, DMOD:  5, FSPD:  4, DEFN:  5, SIZE:  5, CRAG:  3
+Tanks 1: , MSPD:  5, BSPD:  6, DMOD:  3, FSPD:  2, DEFN:  4, SIZE:  1, CRAG:  4
+Tanks 2: , MSPD:  3, BSPD:  5, DMOD:  2, FSPD:  3, DEFN:  5, SIZE:  2, CRAG:  5
+Tanks 3: , MSPD:  3, BSPD:  3, DMOD:  2, FSPD:  3, DEFN:  8, SIZE:  1, CRAG:  5
+Tanks 4: , MSPD:  4, BSPD:  4, DMOD:  3, FSPD:  3, DEFN:  5, SIZE:  4, CRAG:  2
+Tanks 5: , MSPD:  2, BSPD:  6, DMOD:  4, FSPD:  4, DEFN:  1, SIZE:  2, CRAG:  6
+Tanks 6: , MSPD:  1, BSPD:  3, DMOD:  4, FSPD:  4, DEFN:  5, SIZE:  5, CRAG:  3
+Tanks 7: , MSPD:  3, BSPD:  3, DMOD:  6, FSPD:  2, DEFN:  4, SIZE:  3, CRAG:  4
+
+FIGHT END
+
+Remaining time: 1832
+Tanks left: 1
+
+
+fight result:
+
+Winning Order: 7, 5, 6, 1, 4, 0, 2, 3
+
