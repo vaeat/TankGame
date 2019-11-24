@@ -62,7 +62,7 @@ class Tank {
     for (int i = 0; i < LIMIT - values.length; i++)
       values[int(random(values.length))] += 1;
 
-    //  report result
+    //  report result -> this is not the reult, it is the sepcs of the tank created 
     println("new tank created");
     String printout = str(values[0]);
     for (int i = 1; i < values.length; i++)
@@ -99,7 +99,7 @@ class Tank {
       values[to] += 1;
     }
 
-    //  report result
+    //  report result -> this is not the reult, it is the sepcs of the tank created 
     println("new tank mutation (by factor of " + str(factor) + ") created");
     String printout = str(values[0]);
     for (int i = 1; i < values.length; i++)
@@ -120,7 +120,7 @@ class Tank {
       values[i] = base.values[i];
 
 
-    //  report result
+    //  report result -> this is not the reult, it is the sepcs of the tank created 
     println("new tank clone created");
     String printout = str(values[0]);
     for (int i = 1; i < values.length; i++)
@@ -149,7 +149,7 @@ class Tank {
         values[v] -= 1;
     }
 
-    //  report result
+    //  report result -> this is not the reult, it is the sepcs of the tank created 
     println("new tank crossbreed created");
     String printout = str(values[0]);
     for (int i = 1; i < values.length; i++)
