@@ -368,16 +368,64 @@ class Tank {
     String s = "";
 
     if (values[0] < 10)
-      s += ", " + statNames[0] + ":  " + str(values[0]);
+      s += " " + str(values[0]);
     else
-      s += ", " + statNames[0] + ": " + str(values[0]);
+      s += str(values[0]);
 
     for (int i = 1; i < values.length; i++) {
       if (values[i] < 10)
-        s += ", " + statNames[i] + ":  " + str(values[i]);
+        s += ",  " + str(values[i]);
       else
-        s += ", " + statNames[i] + ": " + str(values[i]);
+        s += ", " + str(values[i]);
     }
     return s;
+  }
+
+  //  prints the ratio of types
+  String ratio() {
+    int totalSpeed = values[0] + values[1];
+    int totalAttack = values[2] + values[3];
+    int totalDefense = values[4] + values[5];
+
+    //  gets the relative amount with the highest being 255 and the rest being proportional to the highest
+    int speed = int(100 * totalSpeed / max(totalSpeed, totalAttack, totalAttack));
+    int attack = int(100 * totalAttack / max(totalSpeed, totalAttack, totalAttack));
+    int defense = int(100 * totalDefense / max(totalSpeed, totalAttack, totalAttack));
+
+    return ("SPEED: " + speed + "%, ATTACK: " + attack + "%, DEFENSE: " + defense + "%");
+  }
+
+  //  prints the overall type
+  String overall() {
+    int totalSpeed = values[0] + values[1];
+    int totalAttack = values[2] + values[3];
+    int totalDefense = values[4] + values[5];
+
+    //  check ties
+    if (totalSpeed == totalAttack) {
+      if (totalDefense == totalAttack)
+        return "ALL BALANCED";
+      else if (totalDefense < totalAttack)
+        return "SPEED/ATTACK BALANCED";
+    }
+    if (totalDefense == totalAttack) {
+      if (totalSpeed < totalAttack)
+        return "DEFENSE/ATTACK BALANCED";
+    }
+    if (totalSpeed == totalDefense) {
+      if (totalAttack < totalDefense)
+        return "SPEED/DEFENSE BALANCED";
+    }
+
+    //  check for max
+    if (totalDefense > totalAttack && totalDefense > totalSpeed)
+      return "DEFENSE";
+    if (totalSpeed > totalDefense && totalSpeed > totalAttack)
+      return "SPEED";
+    if (totalAttack > totalDefense && totalAttack > totalSpeed)
+      return "ATTACK";
+
+    //  this part should never be reached as the above search should be exhaustive
+    return "SOMETHING WENT WRONG CATAGORIZING THIS ONE";
   }
 }

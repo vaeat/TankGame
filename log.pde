@@ -9,8 +9,10 @@ void logTankSetup() {
   log.append("");
   log.append("Tanks: " + tanks.size());
   log.append("");
-  for (Tank t : tanks)
+  for (Tank t : tanks) {
     log.append("Tanks " + t.id + ": " + t.stats());
+    log.append(t.ratio() + ", OVERALL: " + t.overall());
+  }
 }
 
 void logTankResult1() {
