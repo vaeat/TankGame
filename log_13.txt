@@ -1,0 +1,65 @@
+
+GENERATION 0
+
+Tanks: 8
+
+Tanks 0:  2,  7,  5,  3,  3,  1,  4
+SPEED: 100%, ATTACK: 88%, DEFENSE: 44%, OVERALL: SPEED
+Tanks 1:  5,  4,  3,  4,  3,  4,  2
+SPEED: 100%, ATTACK: 77%, DEFENSE: 77%, OVERALL: SPEED
+Tanks 2:  6,  4,  2,  4,  3,  1,  5
+SPEED: 100%, ATTACK: 60%, DEFENSE: 40%, OVERALL: SPEED
+Tanks 3:  2,  4,  1,  4,  3,  6,  5
+SPEED: 100%, ATTACK: 83%, DEFENSE: 150%, OVERALL: DEFENSE
+Tanks 4:  2,  3,  4,  2,  5,  4,  5
+SPEED: 83%, ATTACK: 100%, DEFENSE: 150%, OVERALL: DEFENSE
+Tanks 5:  5,  6,  3,  4,  2,  2,  3
+SPEED: 100%, ATTACK: 63%, DEFENSE: 36%, OVERALL: SPEED
+Tanks 6:  1,  5,  1,  7,  2,  7,  2
+SPEED: 75%, ATTACK: 100%, DEFENSE: 112%, OVERALL: DEFENSE
+Tanks 7:  5,  2,  2,  3,  8,  1,  4
+SPEED: 100%, ATTACK: 71%, DEFENSE: 128%, OVERALL: DEFENSE
+
+FIGHT END
+
+Remaining time: 2343
+Tanks left: 1
+
+
+Winning Order: 1, 6, 7, 0, 4, 5, 2, 3
+
+
+GENERATION 1
+
+Tanks: 8
+
+Tanks 0:  5,  4,  3,  4,  3,  4,  2
+SPEED: 100%, ATTACK: 77%, DEFENSE: 77%, OVERALL: SPEED
+Tanks 1:  1,  5,  1,  7,  2,  7,  2
+SPEED: 75%, ATTACK: 100%, DEFENSE: 112%, OVERALL: DEFENSE
+Tanks 2:  5,  2,  2,  3,  8,  1,  4
+SPEED: 100%, ATTACK: 71%, DEFENSE: 128%, OVERALL: DEFENSE
+Tanks 3:  4,  5,  3,  4,  3,  4,  2
+SPEED: 100%, ATTACK: 77%, DEFENSE: 77%, OVERALL: SPEED
+Tanks 4:  6,  3,  3,  5,  4,  3,  1
+SPEED: 100%, ATTACK: 88%, DEFENSE: 77%, OVERALL: SPEED
+Tanks 5:  3,  4,  2,  6,  2,  6,  2
+SPEED: 87%, ATTACK: 100%, DEFENSE: 100%, OVERALL: DEFENSE/ATTACK BALANCED
+Tanks 6:  5,  2,  1,  4,  7,  4,  2
+SPEED: 100%, ATTACK: 71%, DEFENSE: 157%, OVERALL: DEFENSE
+Tanks 7:  5,  5,  3,  1,  2,  5,  4
+SPEED: 100%, ATTACK: 40%, DEFENSE: 70%, OVERALL: SPEED
+
+FIGHT END
+
+Remaining time: 2132
+Tanks left: 1
+
+
+Winning Order: 3, 0, 6, 1, 4, 2, 7, 5
+
+
+Final results:
+
+0: SPEED 100 77 77
+1: SPEED 100 77 77
