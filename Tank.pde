@@ -336,9 +336,6 @@ class Tank {
 
   //  get hit
   void getHit(Bullet b) {
-    println(b.damage);
-    if (b.damage == 0)
-      println("HERE");
     health -= b.damage;  //  take damage
     //  otherwise, check if should target a new tank{
     agro[b.id] += b.damage;  //  modify agro
