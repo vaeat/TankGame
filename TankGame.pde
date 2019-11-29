@@ -1,11 +1,11 @@
-//Git TankGame //<>// //<>// //<>// //<>// //<>// //<>//
+//Git TankGame //<>// //<>// //<>//
 //Second Commit
 //Third Commit
 
 
 final int numOfTanks = 8;
 final int timeLimit = 2700;
-final int goal = 1;  //  total number of generations
+final int goal = 10;  //  total number of generations
 
 ArrayList<Tank> tanks = new ArrayList<Tank>();
 ArrayList<Tank> tankResults = new ArrayList<Tank>();
@@ -267,6 +267,9 @@ void draw() {
 
     //  reset timer
     timer = timeLimit;
+
+    //  reset bullets
+    bullets = new ArrayList<Bullet>();
 
     //  add remaining tanks into results
     while (tanksLeft() > 0) {
