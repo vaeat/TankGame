@@ -1,15 +1,16 @@
-//Git TankGame //<>// //<>// //<>//
+//Git TankGame //<>// //<>// //<>// //<>// //<>// //<>//
 //Second Commit
 //Third Commit
 
 
 final int numOfTanks = 8;
 final int timeLimit = 2700;
-final int goal = 0;  //  total number of generations
+final int goal = 1;  //  total number of generations
 
 ArrayList<Tank> tanks = new ArrayList<Tank>();
 ArrayList<Tank> tankResults = new ArrayList<Tank>();
 int[] fake_scores = new int[numOfTanks];
+ArrayList<Tank> finalResults = new ArrayList<Tank>();  //  used to store first place of each fight
 
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 
@@ -22,11 +23,12 @@ StringList log = new StringList();
 
 
 void setup() {
+  /*
   createInitialTanks(); 
-  println("teeeeeest");
-  createVaeaTanks(); 
-  println("Vaea done");
-
+   println("teeeeeest");
+   createVaeaTanks(); 
+   println("Vaea done");
+   */
 
 
   size(600, 600);
@@ -213,11 +215,18 @@ void draw() {
   //  update tanks (for just for update)
   for (Tank t : tanks) {
     //  update if not dead
-    if (!t.dead)
+    if (!t.dead) {
+      //  update
       t.updateTank();
+      //  move out of way of overlapping tank
+      for (Tank t2 : tanks)
+        if (overlapping(t.hitbox, t2.hitbox) && !t2.dead && t != t2)
+          //  while (overlapping(t.hitbox, t2.hitbox))
+          seperate(t, t2);
+    }
     //  check for bullet collisions
     for (Bullet b : bullets)
-      if (overlapping(b.hitbox, t.hitbox) && b.id != t.id) {
+      if (overlapping(b.hitbox, t.hitbox) && !t.dead && b.id != t.id) {
         t.getHit(b);
         b.dead = true;
       }
@@ -281,13 +290,18 @@ void draw() {
     ArrayList<Tank> tankResultsReversed = new ArrayList<Tank>();
     for (int i = tankResults.size()-1; i >= 0; i--)
       tankResultsReversed.add(tankResults.get(i));
-    tanks = tankResultsReversed;  //  save tank results to just tanks (as results will be overwritten)
+    tankResults = tankResultsReversed;
+    tanks = tankResultsReversed;  //  also save tank results to just tanks (as results will be overwritten)
+
+    //  save first place tank
+    finalResults.add(tanks.get(0));
 
     //  log results of the winning tanks
     logTankResult2();
 
     //  check if end generation has been met
     if (generation == goal) {
+      logFinal();
       printLog();
       exit();
     }

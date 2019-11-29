@@ -27,18 +27,39 @@ void logTankResult1() {
 
 void logTankResult2() {
   log.append("");
-  log.append("fight result:");
-  log.append("");
   //  write ids of tanks in winning order
   String result = "";
-  for (int i = 0; i < tankResults.size(); i++)
+  for (int i = 0; i < tankResults.size(); i++) {
     if (i == 0)
       result += "Winning Order: " + tankResults.get(i).id;
     else
       result += ", " + tankResults.get(i).id;
+  }
 
   log.append(result);
   log.append("");
+}
+
+//  log the final results of the fights
+void logFinal() {
+  //  conclude the log with an overall of the winning tanks
+  log.append("");
+  log.append("Final results:");
+  log.append("");
+  println(tankResults.size());
+  String endResult = "";
+  for (int i = 0; i < finalResults.size(); i++) {
+    if (i > 0)
+      endResult += ", ";
+    if (i > 0) {
+      if (finalResults.get(i) == finalResults.get(i-1))
+        endResult += str(i) + ": Same";
+      else
+        endResult += str(i) + ": " + finalResults.get(i).description();
+    } else
+      endResult += str(i) + ": " + finalResults.get(i).description();
+  }
+  log.append(endResult);
 }
 
 //  print the log to a txt file
@@ -52,6 +73,6 @@ void printLog() {
       found = true;
     else
       counter++;
-    }
-    saveStrings("log_" + counter + ".txt", log.array());
+  }
+  saveStrings("log_" + counter + ".txt", log.array());
 }

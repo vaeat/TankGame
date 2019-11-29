@@ -199,7 +199,7 @@ class Tank {
 
     mspeed = values[0]/2;
     bspeed = values[1]*2;
-    damage = int(0.5 + values[2]/2);
+    damage = int(1 + values[2]/2);
     fspeed = int(max(120 - 10*values[5], 0) + 30);  //  the max function means that the even if 120 - 10*values[5] becomes less than 0, it will still be 0, making the fastest possible firing rate 30 fps
     health = values[4]+1;
     size = int(20/values[5] + 20);
@@ -234,8 +234,12 @@ class Tank {
   }
 
   void drawTank() {
+    //  actual tank
     fill(colour());
     ellipse(pos.x, pos.y, size*2, size*2);
+    //  health bar
+    fill(255, 0, 0, 50);
+    rect(pos.x-health*10, pos.y-5, health*20, 10);
   }
 
 
@@ -268,6 +272,11 @@ class Tank {
   }
 
 
+  //  moves tank a set distance
+  void move(PVector distance) {
+    pos.add(distance);
+  }
+
   //  move tank
   void move() {
 
@@ -299,13 +308,13 @@ class Tank {
       dir -= 2*PI;
 
     //  move back into bounds
-    while (pos.x+size < 0)
+    while (pos.x-size < 0)
       pos.add(new PVector(1, 0));
-    while (pos.x-size > width)
+    while (pos.x+size > width)
       pos.add(new PVector(-1, 0));
-    while (pos.y+size < 0)
+    while (pos.y-size < 0)
       pos.add(new PVector(0, 1));
-    while (pos.y-size > height)
+    while (pos.y+size > height)
       pos.add(new PVector(0, -1));
   }
 
@@ -327,6 +336,9 @@ class Tank {
 
   //  get hit
   void getHit(Bullet b) {
+    println(b.damage);
+    if (b.damage == 0)
+      println("HERE");
     health -= b.damage;  //  take damage
     //  otherwise, check if should target a new tank{
     agro[b.id] += b.damage;  //  modify agro
@@ -387,7 +399,7 @@ class Tank {
     int totalAttack = values[2] + values[3];
     int totalDefense = values[4] + values[5];
 
-    //  gets the relative amount with the highest being 255 and the rest being proportional to the highest
+    //  gets the relative amount with the highest being 100 and the rest being proportional to the highest
     int speed = int(100 * totalSpeed / max(totalSpeed, totalAttack, totalAttack));
     int attack = int(100 * totalAttack / max(totalSpeed, totalAttack, totalAttack));
     int defense = int(100 * totalDefense / max(totalSpeed, totalAttack, totalAttack));
@@ -428,4 +440,56 @@ class Tank {
     //  this part should never be reached as the above search should be exhaustive
     return "SOMETHING WENT WRONG CATAGORIZING THIS ONE";
   }
+
+  //  a short description for the final results
+  String description() {
+    int totalSpeed = values[0] + values[1];
+    int totalAttack = values[2] + values[3];
+    int totalDefense = values[4] + values[5];
+
+    String type = "";
+
+    //  check ties
+    if (totalSpeed == totalAttack) {
+      if (totalDefense == totalAttack)
+        type = "FULL BALANCED";
+      else if (totalDefense < totalAttack)
+        type = "SPEED/ATTACK";
+    }
+    if (totalDefense == totalAttack) {
+      if (totalSpeed < totalAttack)
+        type = "DEFENSE/ATTACK";
+    }
+    if (totalSpeed == totalDefense) {
+      if (totalAttack < totalDefense)
+        type = "SPEED/DEFENSE";
+    }
+
+    //  check for max
+    if (totalDefense > totalAttack && totalDefense > totalSpeed)
+      type = "DEFENSE";
+    if (totalSpeed > totalDefense && totalSpeed > totalAttack)
+      type = "SPEED";
+    if (totalAttack > totalDefense && totalAttack > totalSpeed)
+      type = "ATTACK";
+
+    //  gets the relative amount with the highest being 100 and the rest being proportional to the highest
+    int speed = int(100 * totalSpeed / max(totalSpeed, totalAttack, totalAttack));
+    int attack = int(100 * totalAttack / max(totalSpeed, totalAttack, totalAttack));
+    int defense = int(100 * totalDefense / max(totalSpeed, totalAttack, totalAttack));
+
+    type += " " + speed + " " + attack + " " + defense;
+
+    return type;
+  }
+}
+
+
+//  a function that will move tanks away from wach other (will only be used on tanks that are overlapping)
+void seperate(Tank a, Tank b) {
+  PVector dir = a.pos.copy().sub(b.pos);
+  dir.normalize();
+  a.move(dir);
+  dir.mult(-1);
+  b.move(dir);
 }
