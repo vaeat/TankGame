@@ -49,7 +49,7 @@ void logFinal() {
   println(tankResults.size());
   for (int i = 0; i < finalResults.size(); i++) {
     if (i > 0) {
-      if (finalResults.get(i) == finalResults.get(i-1))
+      if (finalResults.get(i).isSame(finalResults.get(i-1)))  //  check is the same tank won again
         log.append(str(i) + ": Same");
       else
         log.append(str(i) + ": " + finalResults.get(i).description());

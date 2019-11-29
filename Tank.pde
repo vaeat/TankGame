@@ -482,6 +482,14 @@ class Tank {
 
     return type;
   }
+
+  //  returns true if the input tank is the same (value-wise) as this tank
+  boolean isSame(Tank other) {
+    for (int i = 0; i < values.length; i++)
+      if (other.values[i] != values[i])
+        return false;
+    return true;
+  }
 }
 
 
