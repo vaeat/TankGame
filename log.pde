@@ -47,19 +47,15 @@ void logFinal() {
   log.append("Final results:");
   log.append("");
   println(tankResults.size());
-  String endResult = "";
   for (int i = 0; i < finalResults.size(); i++) {
-    if (i > 0)
-      endResult += ", ";
     if (i > 0) {
       if (finalResults.get(i) == finalResults.get(i-1))
-        endResult += str(i) + ": Same";
+        log.append(str(i) + ": Same");
       else
-        endResult += str(i) + ": " + finalResults.get(i).description();
+        log.append(str(i) + ": " + finalResults.get(i).description());
     } else
-      endResult += str(i) + ": " + finalResults.get(i).description();
+      log.append(str(i) + ": " + finalResults.get(i).description());
   }
-  log.append(endResult);
 }
 
 //  print the log to a txt file
