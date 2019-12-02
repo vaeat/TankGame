@@ -5,7 +5,7 @@
 
 final int numOfTanks = 8;
 final int timeLimit = 2700;
-final int goal = 17;  //  total number of generations
+final int goal = 100;  //  total number of generations
 
 final int trial = 0;  //  which trial to run
 /*
