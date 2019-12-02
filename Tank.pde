@@ -225,9 +225,9 @@ class Tank {
     int totalDefense = values[4] + values[5];
 
     //  gets the relative amount with the highest being 255 and the rest being proportional to the highest
-    int speed = int(255 * totalSpeed / max(totalSpeed, totalAttack, totalAttack));
-    int attack = int(255 * totalAttack / max(totalSpeed, totalAttack, totalAttack));
-    int defense = int(255 * totalDefense / max(totalSpeed, totalAttack, totalAttack));
+    int speed = int(255 * totalSpeed / max(totalSpeed, totalAttack, totalDefense));
+    int attack = int(255 * totalAttack / max(totalSpeed, totalAttack, totalDefense));
+    int defense = int(255 * totalDefense / max(totalSpeed, totalAttack, totalDefense));
 
     //  creates a new RGB colour
     return color(attack, speed, defense);
@@ -397,9 +397,9 @@ class Tank {
     int totalDefense = values[4] + values[5];
 
     //  gets the relative amount with the highest being 100 and the rest being proportional to the highest
-    int speed = int(100 * totalSpeed / max(totalSpeed, totalAttack, totalAttack));
-    int attack = int(100 * totalAttack / max(totalSpeed, totalAttack, totalAttack));
-    int defense = int(100 * totalDefense / max(totalSpeed, totalAttack, totalAttack));
+    int speed = int(100 * totalSpeed / max(totalSpeed, totalAttack, totalDefense));
+    int attack = int(100 * totalAttack / max(totalSpeed, totalAttack, totalDefense));
+    int defense = int(100 * totalDefense / max(totalSpeed, totalAttack, totalDefense));
 
     return ("SPEED: " + speed + "%, ATTACK: " + attack + "%, DEFENSE: " + defense + "%");
   }
@@ -471,9 +471,9 @@ class Tank {
       type = "ATTACK";
 
     //  gets the relative amount with the highest being 100 and the rest being proportional to the highest
-    int speed = int(100 * totalSpeed / max(totalSpeed, totalAttack, totalAttack));
-    int attack = int(100 * totalAttack / max(totalSpeed, totalAttack, totalAttack));
-    int defense = int(100 * totalDefense / max(totalSpeed, totalAttack, totalAttack));
+    int speed = int(100 * totalSpeed / max(totalSpeed, totalAttack, totalDefense));
+    int attack = int(100 * totalAttack / max(totalSpeed, totalAttack, totalDefense));
+    int defense = int(100 * totalDefense / max(totalSpeed, totalAttack, totalDefense));
 
     type += " " + speed + " " + attack + " " + defense;
 
