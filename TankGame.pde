@@ -121,6 +121,13 @@ void draw() {
     text("Generation: " + generation, 10, 30);
     textSize(20);
     text(int(timer/60), 10, 50);
+    
+    
+    
+    //  record frame
+    videoExport.saveFrame();
+
+
 
     //  determine end of fight with there only being one tank left or timer has hit 0
     if (tanksLeft() <= 1 || timer == 0) {
@@ -174,7 +181,7 @@ void draw() {
         //  resize for graph displaying
         //  frame.resize(finalResults.size()*10, 600);
         surface.setSize(finalResults.size()*10, 600);
-        //  surface.setSize(1000, 600);
+        surface.setSize(1000, 600);
         println("Final results:", finalResults.size());
       }
       //  otherwise, keep going
@@ -190,9 +197,6 @@ void draw() {
         breedTanks();
       }
     }
-
-    //  record frame
-    videoExport.saveFrame();
   } else {
     //  DRAW GRAPH
 
