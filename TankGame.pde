@@ -15,8 +15,8 @@ trails:
  2 = Vaea 1
  3 = Vaea 2
  */
- 
- 
+
+
 //  import recording package
 import com.hamoid.*;
 
@@ -42,12 +42,21 @@ boolean fight = true;
 
 void setup() {
   size(600, 600);
-  
+
   createInitialTanks();
-  
+
   //  set up recording
   videoExport = new VideoExport(this);
   videoExport.startMovie();
+
+
+  /*
+  for (int i = 0; i < 100; i++) {
+   finalResults.add(new Tank(0));
+   }
+   surface.setSize(finalResults.size()*10, 600);
+   fight = false;
+   */
 }
 
 
@@ -165,7 +174,7 @@ void draw() {
         //  resize for graph displaying
         //  frame.resize(finalResults.size()*10, 600);
         surface.setSize(finalResults.size()*10, 600);
-        surface.setSize(1000, 600);
+        //  surface.setSize(1000, 600);
         println("Final results:", finalResults.size());
       }
       //  otherwise, keep going
@@ -181,7 +190,7 @@ void draw() {
         breedTanks();
       }
     }
-    
+
     //  record frame
     videoExport.saveFrame();
   } else {
