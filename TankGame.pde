@@ -7,7 +7,7 @@ final int numOfTanks = 8;
 final int timeLimit = 2700;
 final int goal = 100;  //  total number of generations
 
-final int trial = 0;  //  which trial to run
+final int trial = 1;  //  which trial to run
 /*
 trails:
  0 = Josiah 1
@@ -181,7 +181,7 @@ void draw() {
         //  resize for graph displaying
         //  frame.resize(finalResults.size()*10, 600);
         surface.setSize(finalResults.size()*10, 600);
-        surface.setSize(1000, 600);
+        //  surface.setSize(1000, 600);
         println("Final results:", finalResults.size());
       }
       //  otherwise, keep going
