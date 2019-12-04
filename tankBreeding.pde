@@ -26,7 +26,7 @@ void breedTanks() {
   else if (trial == 3)
     newTanks = VaeaTanks2();
   else if (trial == 4)
-    newTanks = VaeaTanks2();
+    newTanks = VaeaTanks3();
 
   tanks = newTanks;
 
@@ -156,15 +156,61 @@ ArrayList<Tank> VaeaTanks1() {
   return newTanks;
 }
 
-StringList genetics_types; 
-IntList pattern_order; 
-ArrayList<Tank> VaeaTanks2() { 
-  /*This is the 'baseline' one with every pattern taken randomly*/
+
+
+
+ArrayList<Tank> VaeaTanks2() {  
+  //Create a new empty array to add then tanks later
+  ArrayList<Tank> newTanks = new ArrayList<Tank>();  
+  //  random tank
+  newTanks.add(new Tank(0));
+  
+  //cloned first place
+  newTanks.add(new Tank(1, tanks.get(0)));
+  
+  //CrossBreeding and mutation of first and secondbest
+  Tank crossbred = new Tank(1, tanks.get(0), tanks.get(1));
+  Tank crossmutate = new Tank(2, crossbred, 1);  
+  newTanks.add(crossmutate);
+
+  //2 CorssBread
+  Tank crossbred1 = new Tank(3, tanks.get(0), tanks.get(1));
+  Tank crossbred2 = new Tank(4, tanks.get(0), tanks.get(1));
+  Tank crossbred3 = new Tank(5, tanks.get(1), tanks.get(2));
+  newTanks.add(crossbred1);
+  newTanks.add(crossbred2);
+  newTanks.add(crossbred3);
+
+
+  //2 Mutations of the best
+  //degree of mutation of 7 because wand to see if best of not, and of 8 because same
+  //Tank mutated1 = new Tank(5, tanks.get(0), 7);           
+  Tank mutated2 = new Tank(6, tanks.get(0), 8);
+  //newTanks.add(mutated1);
+  newTanks.add(mutated2);
+
+  //1 Mutations of the 2nd best
+  //same pattern for the degree of mutation
+ // Tank mutated3 = new Tank(6, tanks.get(1), 7);
+  Tank mutated4 = new Tank(7, tanks.get(1), 8);
+  //newTanks.add(mutated3);
+  newTanks.add(mutated4);
+
+  return newTanks;
+}
+
+
+
+ArrayList<Tank> VaeaTanks3() { 
+  /*
+  This is the 'baseline' one with every pattern taken randomly and every specs chosen randomly as well
+  */
   //Create a new empty array to add then tanks later
   ArrayList<Tank> newTanks = new ArrayList<Tank>();
   
   //Initialise randomness
   String[] genetics_types  = { "breed", "clone", "mutate", "random" };
+  print("Genetics Tipes");
  
   //Pick a random genetic type and add the new completely random tank based on the random genetic type chosen
    for (int i = 0; i < 8; i++) {

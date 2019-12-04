@@ -1,4 +1,4 @@
-//Git TankGame //<>// //<>// //<>// //<>//
+//Git TankGame //<>// //<>// //<>//
 //Second Commit
 //Third Commit
 
@@ -7,7 +7,7 @@ final int numOfTanks = 8;
 final int timeLimit = 2700;
 final int goal = 100;  //  total number of generations
 
-final int trial = 2;  //  which trial to run
+final int trial = 3;  //  which trial to run
 /*
 trails:
  0 = Josiah 1
