@@ -25,6 +25,8 @@ void breedTanks() {
     newTanks = VaeaTanks1();
   else if (trial == 3)
     newTanks = VaeaTanks2();
+  else if (trial == 4)
+    newTanks = VaeaTanks2();
 
   tanks = newTanks;
 
@@ -139,7 +141,7 @@ ArrayList<Tank> VaeaTanks1() {
 
   //2 Mutations of the best
   //degree of mutation of 1 because best, and of 2 because 2nd mutation
-  Tank mutated1 = new Tank(4, tanks.get(0), 1);            //  WE NEED NUMBERS, NOT RANDOM VALUES
+  Tank mutated1 = new Tank(4, tanks.get(0), 1);           
   Tank mutated2 = new Tank(5, tanks.get(0), 2);
   newTanks.add(mutated1);
   newTanks.add(mutated2);
@@ -154,42 +156,36 @@ ArrayList<Tank> VaeaTanks1() {
   return newTanks;
 }
 
-
+StringList genetics_types; 
+IntList pattern_order; 
 ArrayList<Tank> VaeaTanks2() { 
   /*This is the 'baseline' one with every pattern taken randomly*/
   //Create a new empty array to add then tanks later
   ArrayList<Tank> newTanks = new ArrayList<Tank>();
-  //One Random 
-  //Tank tank = new Tank(0);
-  newTanks.add(new Tank(0));
-  //One Clone
-  Tank base = tanks.get(int(random(8))); 
-  Tank clone = new Tank(1, base);
-  newTanks.add(new Tank(1, base));
-  println(clone); 
-
-  println();
-
-  //2 CorssBread
-  Tank crossbred1 = new Tank(2, tanks.get(0), tanks.get(1));
-  Tank crossbred2 = new Tank(3, tanks.get(0), tanks.get(1));
-  newTanks.add(crossbred1);
-  newTanks.add(crossbred2);
-
-
-  //2 Mutations of the best
-
-  Tank mutated1 = new Tank(4, tanks.get(0), int(random(4)));            //  WE NEED NUMBERS, NOT RANDOM VALUES
-  Tank mutated2 = new Tank(5, tanks.get(0), int(random(3)));
-  newTanks.add(mutated1);
-  newTanks.add(mutated2);
-
-  //2 Mutations of the 2nd best
-  Tank mutated3 = new Tank(6, tanks.get(1), int(random(2)));
-  Tank mutated4 = new Tank(7, tanks.get(1), int(random(8)));
-  newTanks.add(mutated3);
-  newTanks.add(mutated4);
-
+  
+  //Initialise randomness
+  String[] genetics_types  = { "breed", "clone", "mutate", "random" };
+ 
+  //Pick a random genetic type and add the new completely random tank based on the random genetic type chosen
+   for (int i = 0; i < 8; i++) {
+       int index = int(random(genetics_types.length)); 
+       if (genetics_types[index]=="breed"){
+          Tank crossbred = new Tank(i, tanks.get(int(random(8))), tanks.get(int(random(8))));
+          newTanks.add(crossbred);
+       }
+       if (genetics_types[index]=="clone"){
+         Tank base = tanks.get(int(random(8))); 
+         newTanks.add(new Tank(i, base));
+       }
+       if (genetics_types[index]=="mutate"){
+           Tank mutated = new Tank(i, tanks.get(int(random(8))), int(random(6)));
+           newTanks.add(mutated);
+       }
+       if (genetics_types[index]=="random"){
+         newTanks.add(new Tank(i));
+       }
+   }
+  
   return newTanks;
 }
 

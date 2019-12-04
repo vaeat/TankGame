@@ -1,4 +1,4 @@
-//Git TankGame //<>// //<>// //<>//
+//Git TankGame //<>// //<>// //<>// //<>//
 //Second Commit
 //Third Commit
 
@@ -42,7 +42,6 @@ boolean fight = true;
 
 void setup() {
   size(600, 600);
-()
   createInitialTanks();
 
   //  set up recording
