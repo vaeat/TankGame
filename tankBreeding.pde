@@ -138,15 +138,16 @@ ArrayList<Tank> VaeaTanks1() {
 
 
   //2 Mutations of the best
-
-  Tank mutated1 = new Tank(4, tanks.get(0), int(random(4)));            //  WE NEED NUMBERS, NOT RANDOM VALUES
-  Tank mutated2 = new Tank(5, tanks.get(0), int(random(3)));
+  //degree of mutation of 1 because best, and of 2 because 2nd mutation
+  Tank mutated1 = new Tank(4, tanks.get(0), 1);            //  WE NEED NUMBERS, NOT RANDOM VALUES
+  Tank mutated2 = new Tank(5, tanks.get(0), 2);
   newTanks.add(mutated1);
   newTanks.add(mutated2);
 
   //2 Mutations of the 2nd best
-  Tank mutated3 = new Tank(6, tanks.get(1), int(random(2)));
-  Tank mutated4 = new Tank(7, tanks.get(1), int(random(8)));
+  //same pattern for the degree of mutation
+  Tank mutated3 = new Tank(6, tanks.get(1), 1);
+  Tank mutated4 = new Tank(7, tanks.get(1), 2);
   newTanks.add(mutated3);
   newTanks.add(mutated4);
 
@@ -155,6 +156,7 @@ ArrayList<Tank> VaeaTanks1() {
 
 
 ArrayList<Tank> VaeaTanks2() { 
+  /*This is the 'baseline' one with every pattern taken randomly*/
   //Create a new empty array to add then tanks later
   ArrayList<Tank> newTanks = new ArrayList<Tank>();
   //One Random 

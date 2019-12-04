@@ -7,7 +7,7 @@ final int numOfTanks = 8;
 final int timeLimit = 2700;
 final int goal = 100;  //  total number of generations
 
-final int trial = 1;  //  which trial to run
+final int trial = 2;  //  which trial to run
 /*
 trails:
  0 = Josiah 1
@@ -42,7 +42,7 @@ boolean fight = true;
 
 void setup() {
   size(600, 600);
-
+()
   createInitialTanks();
 
   //  set up recording
