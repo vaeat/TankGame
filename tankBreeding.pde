@@ -175,7 +175,7 @@ ArrayList<Tank> VaeaTanks2() {
 
   //2 CorssBread
   Tank crossbred1 = new Tank(3, tanks.get(0), tanks.get(1));
-  Tank crossbred2 = new Tank(4, tanks.get(0), tanks.get(1));
+  Tank crossbred2 = new Tank(4, tanks.get(0), tanks.get(2));
   Tank crossbred3 = new Tank(5, tanks.get(1), tanks.get(2));
   newTanks.add(crossbred1);
   newTanks.add(crossbred2);
